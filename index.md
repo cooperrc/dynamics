@@ -1,44 +1,43 @@
 +++
-title = "Julia Tutorials Template"
-tags = ["code", "tutorials"]
+title = "Dynamics: Lagrangian and Multibody motion"
+tags = ["code", "Physics", "Engineering"]
 +++
 
-# Julia Tutorials Template
+# Welcome to ME 5180 - Dynamics
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This
+work is licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by/4.0/">Creative Commons
+Attribution 4.0 International License</a>.
 
-This is a template repository which can be used to create Julia tutorials websites.
-To use this website as a template, go to
-<https://github.com/rikhuijzer/JuliaTutorialsTemplate>
-and click on the big "Use this template" button.
+<!-- <img src="./images/always_Newton.png" alt="Newton lays claim to -->
+<!-- engineering " title="Newton always has been"/> -->
 
-Some general information is provided below.
-For more in-depth instructions about how to use this template, see [Getting started](/getting-started).
+![Lagrangian Magic comic from
+XKCD.](https://imgs.xkcd.com/comics/physics_vs_magic.png)
 
-## What does this template do?
+Dynamics is the study of how things move and interact. It sets the
+foundation for almost every Mechanical engineering discipline: solid
+mechanics, fluid mechanics, controls, vibrations, etc.
+We are limiting our study to classical mechanics.  
 
-This template contains multiple Pluto notebooks in the `tutorials` folder.
-These tutorials are listed on the left side of this webpage.
-Here,
+We have four conditions for classical mechanics:
+1. mass of objects is constant
+2. mass of objects >> mass of atomic particles
+3. velocity << speed of light
+4. time is short (less than millenia) and mass is small (less than the
+sun or black holes)
 
-1. each tutorial is created and updated in [Pluto.jl](https://github.com/fonsp/Pluto.jl), which is super easy and convenient ✔️,
-1. evaluated and converted to Markdown files in parallel and with caching (for speed 🚀) by [PlutoStaticHTML.jl](https://github.com/rikhuijzer/PlutoStaticHTML.jl) _and_
-1. the tutorials are embedded in a nice website by [Franklin.jl](https://github.com/tlienart/Franklin.jl) 😎.
+> Note: We won't consider quantum effects like wave-particle duality or
+> relativistic effects. 
 
-These steps all run in an automated workflow, so changing a file in your copy of this template will cause the notebooks to be evaluated again (or not, if nothing changed since the last run).
+This course derives equations of motion for multibody systems using
+__kinematics__ and __kinetics__. __Kinematics__ is the study of the
+geometry of motion. __Kinetics__ is the study of forces, impacts, and
+energy on objects.  Your goal is to build general equations of motion using [__Lagrange
+equations__](https://en.wikipedia.org/wiki/Lagrangian_mechanics). We
+will build the foundation for more advanced rigid body dynamic software
+in Python. 
 
-## How can I make my own tutorials?
-
-The following is the short guide, for a more detailled guide, see [Getting started](/getting-started).
-
-- Copy the [template](https://github.com/rikhuijzer/JuliaTutorialsTemplate) by clicking on big "Use this template" button.
-- Replace the Pluto notebooks (`.jl` files) inside `tutorials` by your own tutorials.
-- Change the menu at `layout/menu.html` to point to the right tutorials.
-- Modify any text however you like, the source code has an MIT license.
-- GitHub will take your tutorials and convert them automatically to a pretty website.
-
-## What alternatives are there to this template?
-
-There is a template by Fons van der Plas at <https://github.com/JuliaPluto/static-export-template>.
-That template is easier to use, sticks closer to the original Pluto appearance and has a link to a Binder for each notebook.
-In contrast, this template provides more flexibility in appearance and is more suitable for people who like to style their output or who even want to hide all code.
-Also, this template assumes some knowledge about GitHub Actions and hosting a website via GitHub Pages.
-
+The course calendar is in HuskyCT
