@@ -1,4 +1,4 @@
-# Syllabus: ME 5180 Spring 2024
+# Syllabus: ME 5180 Spring 2025
 ## Course and Instructor Information
 
 **Course Title:** ME5180 - Dynamics
