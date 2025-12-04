@@ -1,5 +1,5 @@
 # Newton's Laws vs. Lagrangian Mechanics: A Comparative Analysis
-[![Newton vs Lagrange](https://img.youtube.com/vi/GeQjIuEm31I/0.jpg)](https://www.youtube.com/watch?v=GeQjIuEm31I "Newton vs Lagrange")
+[![Newton vs Lagrange](https://img.youtube.com/vi/GeQjIuEm31I/0.jpg)](https://www.youtube.com/watch?v=GeQjIuEm31I "Newton vs Lagrange - click to watch")
 
 ## Understanding the Problem
 The problem involves comparing two approaches in classical mechanics:

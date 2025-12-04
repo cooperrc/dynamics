@@ -5,10 +5,15 @@ using Markdown
 using InteractiveUtils
 
 # ╔═╡ b40935f1-5bd4-47d9-81f8-ec22fdd971ba
+begin
 using Plots
+using LaTeXStrings
+end
 
 # ╔═╡ 44ace9bd-6614-465a-8f6d-9a0bb02c1caf
 md"""# What is the fastest path between two points?
+
+[![Brachistochrone introduction](https://img.youtube.com/vi/zGiFiY2y5_U/0.jpg)](https://www.youtube.com/live/zGiFiY2y5_U?si=fg7udrZ6dWFtbvNH "Brachistochrone introduction - click to watch")
 
 We want to design a track that minimizes the time it takes to descend from height, $h$, to height 0 and we want to travel forward by distance, $L$. 
 
@@ -39,14 +44,11 @@ our total time, $T$, is now
 $T = \int_0^L\frac{ds}{v}=\int_0^L\sqrt{\frac{1+f'^2}{2g(h-f)}}dx$
 """
 
-# ╔═╡ 3696002b-9fa7-4a88-8b8d-8e2b618261d2
-h=1
-
 # ╔═╡ 5d564378-07ad-40b7-a601-7cab6f9806aa
 g = 9.81
 
 # ╔═╡ c7901bda-be72-11f0-08b3-91fe88570b8e
-F(f, df) = ((1+df^2)/(2*g*(h-f))).^0.5
+F(f, df, h = 1) = ((1+df^2)/(2*g*(h-f))).^0.5
 
 # ╔═╡ 20afba19-c8e2-4321-8a13-96f54c7f7614
 function T(F, f, df, L = 1, dx=0.0001)
@@ -95,12 +97,20 @@ plot!(ones(length(y1s)).*0.5,
 	P
 end
 
+# ╔═╡ 15719418-3ee1-46ed-92f2-790c4399ee4c
+plot(y1s, T_array, 
+	 title = "Optimizing fastest path",
+	xlabel = L"Y-position fixed at $x=\frac{L}{2}$",
+	ylabel = "Total time to bottom (s)")
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
+LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 
 [compat]
+LaTeXStrings = "~1.4.0"
 Plots = "~1.40.20"
 """
 
@@ -110,7 +120,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.11.7"
 manifest_format = "2.0"
-project_hash = "3a5ee0850c95a5f4ac9c30b1148522d01604730a"
+project_hash = "cd4aff8cc5c697d8880e99f9e011b6b87f7f106d"
 
 [[deps.AliasTables]]
 deps = ["PtrArrays", "Random"]
@@ -1199,12 +1209,12 @@ version = "1.9.2+0"
 
 # ╔═╡ Cell order:
 # ╟─44ace9bd-6614-465a-8f6d-9a0bb02c1caf
-# ╠═3696002b-9fa7-4a88-8b8d-8e2b618261d2
+# ╠═b40935f1-5bd4-47d9-81f8-ec22fdd971ba
 # ╠═5d564378-07ad-40b7-a601-7cab6f9806aa
 # ╠═c7901bda-be72-11f0-08b3-91fe88570b8e
 # ╠═20afba19-c8e2-4321-8a13-96f54c7f7614
 # ╠═8a43d217-2f0e-4e72-a6fc-54e2ff52fd0d
-# ╠═b40935f1-5bd4-47d9-81f8-ec22fdd971ba
 # ╠═73a08918-73ac-4d80-b028-4358354fc17b
+# ╠═15719418-3ee1-46ed-92f2-790c4399ee4c
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
