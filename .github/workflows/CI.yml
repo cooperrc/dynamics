@@ -9,8 +9,8 @@ on:
     inputs:
       disableCache:
         description: 'Type `true` to disable cache for this run; defaults to `false`'
-        required: false
-        default: false
+        required: true
+        default: true
 
 jobs:
   BuildAndDeploy:
