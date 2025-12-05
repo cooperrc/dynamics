@@ -1,15 +1,16 @@
 # Professor Cooper - Mechanical Aerospace and Manufacturing Engineering
 
-[![Professor Cooper's office
-thumnail](https://i9.ytimg.com/vi_webp/YbjMLMelzao/mq1.webp?sqp=CLTj98gG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGGUgWihjMA8=&rs=AOn4CLDCDjQGaQmcow1amwb7gMt1wMHjKg)](https://youtu.be/YbjMLMelzao)
-<!-- <iframe width="560" height="315" -->
-<!-- src="https://www.youtube.com/embed/YbjMLMelzao?si=6DcH3fw379p1NyWA" -->
-<!-- title="YouTube video player" frameborder="0" allow="accelerometer; -->
-<!-- autoplay; clipboard-write; encrypted-media; gyroscope; -->
-<!-- picture-in-picture; web-share" -->
-<!-- referrerpolicy="strict-origin-when-cross-origin" -->
-<!-- allowfullscreen></iframe> -->
-
+<!-- [![Professor Cooper's office -->
+<!-- thumnail](https://i9.ytimg.com/vi_webp/YbjMLMelzao/mq1.webp?sqp=CLTj98gG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CIAC0AWKAgwIABABGGUgWihjMA8=&rs=AOn4CLDCDjQGaQmcow1amwb7gMt1wMHjKg)](https://youtu.be/YbjMLMelzao) -->
+~~~
+<iframe width="560" height="315" 
+src="https://www.youtube.com/embed/YbjMLMelzao?si=6DcH3fw379p1NyWA" 
+title="YouTube video player" frameborder="0" allow="accelerometer; 
+autoplay; clipboard-write; encrypted-media; gyroscope; 
+picture-in-picture; web-share" 
+referrerpolicy="strict-origin-when-cross-origin" 
+allowfullscreen></iframe> 
+~~~
 ## Understanding Engineering Education and Research
 
 Dr. Ryan Cooper, a professor in the school of engineering here at UConn,
