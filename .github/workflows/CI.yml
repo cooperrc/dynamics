@@ -25,12 +25,12 @@ jobs:
     - uses: julia-actions/cache@v1
     - uses: julia-actions/julia-buildpkg@v1
 
-    - name: Build notebooks
-      run: julia --project -e 'using Tutorials; build_tutorials()'
-      env:
-        JULIA_NUM_THREADS: '2'
-        DISABLE_CACHE: '${{ github.event.inputs.disableCache }}'
-        REPO: '${{ github.repository }}'
+#    - name: Build notebooks
+#      run: julia --project -e 'using Tutorials; build_tutorials()'
+#      env:
+#        JULIA_NUM_THREADS: '2'
+#        DISABLE_CACHE: '${{ github.event.inputs.disableCache }}'
+#        REPO: '${{ github.repository }}'
 
     - name: Build site
       run: julia --project -e '
