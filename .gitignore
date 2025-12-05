@@ -11,7 +11,6 @@ Manifest.toml
 _assets/og-image/
 **/*.log
 **/*.txt
-tutorials/*.md
 tutorials/**/*.html
 **/_tmp_*.jl
 **/*backup*.jl
