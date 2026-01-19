@@ -121,5 +121,5 @@ Plots 1.40.20
 <!-- PlutoStaticHTML.End -->
 ~~~
 
-_To run this tutorial locally, download [this file](/tutorials/02_eoms.jl) and open it with
+_To run this tutorial locally, download [this file](/tutorials/02\_eoms.jl) and open it with
 [Pluto.jl](https://plutojl.org)._
