@@ -1,14 +1,18 @@
-name = "Dynamics"
+name = "Tutorials"
 uuid = "e088c1bc-e00f-47bb-8742-48f468c16799"
-authors = ["Ryan C. Cooper <ryan.c.cooper@uconn.edu>"]
 version = "1.0.0"
+authors = ["Ryan C. Cooper <ryan.c.cooper@uconn.edu>"]
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Franklin = "713c75ef-9fc9-4b05-94a9-213340da978e"
-PlutoStaticHTML = "359b1769-a58e-495b-9770-312e911026ad"
 NodeJS = "2bd173c7-0d6d-553b-b6af-13a54713934c"
+OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
+PlutoStaticHTML = "359b1769-a58e-495b-9770-312e911026ad"
 
 [compat]
+DataFrames = "1.8.1"
 Franklin = "0.10"
+OrdinaryDiffEq = "6.106.0"
 PlutoStaticHTML = "7"

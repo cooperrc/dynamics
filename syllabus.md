@@ -28,7 +28,7 @@ GitHub Discussions
 [**HuskyCT**](https://learn.uconn.edu/ultra)
 
 ### Discuss course assignments/materials
-[**Github Discussions**](https://github.com/cooperrc/advanced-dynamics/discussions)
+[**Github Discussions**](https://github.com/cooperrc/dynamics/discussions)
 
 _Note: make an account with github.com to post questions and answers._
 
@@ -51,7 +51,8 @@ Numerical methods will introduce linear algebra and numerical integration.
 This course will introduce analytical and numerical solutions to multibody dynamic
 systems. We will use Newton's laws of motion and Lagrange's laws
 of motion, calculus, and linear algebra to derive differential equations of motion. We
-will use [Python 3.8+](https://www.anaconda.com/distribution/) to analyze and
+will use [Julia](https://julialang.org/) and
+[Pluto](https://plutojl.org/) to analyze and
 visualize solutions to dynamics problems. 
 
 ## Course Outcomes
@@ -94,10 +95,10 @@ __available through UConn Library O'Reilly subscription__
 
 [Lagrangian Dynamics, D. A. Wells, McGraw-Hill.](https://www.amazon.com/Schaums-Outline-Lagrangian-Dynamics-1967-06-01/dp/B017MYQFP0)
 
-[_Advanced Dynamics_ by Ryan C. Cooper](https://cooperrc.github.io/advanced-dynamics/intro.html) this is
+[_Dynamics_ by Ryan C. Cooper](https://cooperrc.github.io/dynamics) this is
 our course website+materials. It will host our syllabus, readings,
 videos, and assignments. I encourage you to suggest edits and add issues
-using the [GitHub repository](https://github.com/cooperrc/advanced-dynamics).
+using the [GitHub repository](https://github.com/cooperrc/dynamics).
 
 ### Recommended textbooks
 
@@ -113,10 +114,8 @@ Engineering Dynamics, Jeremy Kasdin and Derek Paley, Princeton University Press.
 
 - Modern web browser (Chrome/Firefox/Safari/Edge)
 - PDF viewer
-- Mobile scanning software e.g [Google
-  Drive](https://support.google.com/drive/answer/3145835?co=GENIE.Platform%3DAndroid&hl=en&oco=0)
-  or
-  [Scannable](https://itunes.apple.com/us/app/evernote-scannable/id883338188?mt=8)
+- [Julia](https://julialang.org/)
+- [Pluto](https://plutojl.org/)
 
 ### Course Discussion
 
@@ -130,11 +129,6 @@ clarifying course content, logistics, and our process.
 
 The course schedule is maintained on HuskyCT
 
-<iframe
-src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=America%2FNew_York&mode=AGENDA&title=ME5180%20%2F3295%20calendar&src=c2NrcGI2YnI0YnFrcTBwMTJqbzg1YmxramhwaG9uZTFAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23C0CA33"
-style="border:solid 1px #777" width="500" height="400" frameborder="0"
-scrolling="no"></iframe>
-
 Assignments are due by 11:59pm on the specified due dates. 
 
 
@@ -143,25 +137,20 @@ Assignments are due by 11:59pm on the specified due dates.
 
 | Item              | Percent | Requirement                   |
 |-------------------|---------|-------------------------------|
-| Homework          | 40 %    | Turn in homeworks by due date |
-| Quizzes\*         | 40 %    | 8 quizzes                     |
-| Participation\*\* | 20 %    | Self assessment               |
-
-\* Note on Quizzes: Quizzes are based upon previous week's material.
-They are open-resource. You should plan to spend 20-30 minutes
-completing the quiz. You will submit a scan of your work
-and a short (10-30 seconds) video to Classroom. 
+| Projects | 50% | Combination of coding, writing, and simulations |
+| Course Technical Updates    | 30 %    | Turn in updates by due date |
+| Participation\*\* | 20 %    | Activity on GitHub repositories and
+assignments              |
 
 \*\* Note on Participation: 
 You can participate in a variety of ways e.g. 
 
-1.  The videos are recorded lectures and tutorials. For each video, try
-    to answer the discussion questions, or come up with your own. I
-    encourage you to share your thoughts and questions on GitHub
-    Discussions 
-2. You can connect with other students and discuss the Homework and
+1. You can connect with other students and discuss the Projects and
    readings. You should dedicate at least 1 hour per week to reviewing
    content, so it helps to have others to talk through concepts
+2. You need to be active in contributing and reviewing code in GitHub.
+   This will be our main interactions. It is asynchronous, but should be
+   very active.
 3. If you have another way you want to participate in the course,
    discuss that with Prof. Cooper. 
 
@@ -220,8 +209,7 @@ website*](https://onlinestudent.uconn.edu/learn-more/#collapsepanel-269-1-0-07).
 
 This course requires *lots of practice*. You should set aside 6-8 hours
 per week (assuming a 5-day work-week) to write out example problems from
-the textbook, try homework problems, and revise answers. This is the
-best way to prepare for quizzes.
+the textbook, try homework problems, and revise answers. 
 
 
 ## Academic Integrity: 
@@ -266,9 +254,6 @@ The software/technical requirements for this course include:
     ([*Adobe Reader Accessibility
     Statement*](http://www.adobe.com/accessibility/products/reader.html),
     [*Adobe Reader Privacy Policy*](http://www.adobe.com/privacy.html))
--   Google Apps ([*Google Apps
-    Accessibility*](https://www.google.com/accessibility/), [*Google for
-    Education Privacy Policy*](https://www.google.com/edu/trust/)
 -   Dedicated access to high-speed internet with a minimum speed of 1.5
     Mbps (4 Mbps or higher is recommended).
 -   Webcam (Note: Most laptops come with a webcam. If you need to
@@ -291,12 +276,11 @@ To be successful in this course, you will need the following technical
 skills:
 
 -   Use the class discussions
--   Create graphics and graphs and include them in Jupyter notebooks
+-   Create graphics and graphs and include them in Pluto notebooks
 -   Work within two or more browser windows simultaneously.
 -   Open and access PDF files
 -   Scan and upload PDF files
--   Follow software tutorials on YouTube for Jupyter and Python
--   Access and use [*JupyterHub*](https://compmech.uconn.edu)
+-   Follow software tutorials on YouTube for Pluto and Julia
 
 University students are expected to demonstrate competency in Computer
 Technology. Explore the [*Computer Technology
@@ -322,9 +306,8 @@ participate in and complete the course activities and assessments and
 receive academic credit. Verification and authentication of student
 identity in this course will include:
 
-1.  Secure access to the JupyterHub system
-2.  Students will submit videos to describe solutions to the 8 module
-    quizzes.
+1.  Secure access to the HuskyCT
+2.  Students will submit videos for course updates
 
 ### Student Responsibilities and Resources
 

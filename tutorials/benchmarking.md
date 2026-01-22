@@ -4,7 +4,7 @@
     # This information is used for caching.
     [PlutoStaticHTML.State]
     input_sha = "1c8856f178c5e33699171fe193e9c1ed0e156adbaa748a06cc69c23a3e449fdf"
-    julia_version = "1.11.7"
+    julia_version = "1.12.4"
 -->
 
 
@@ -97,14 +97,14 @@ Body�[36m::Float64�[39m
 <pre class='language-julia'><code class='language-julia'>with_benchmark_terminal() do
     @benchmark double(numbers, :one)
 end</code></pre>
-<pre id="plutouiterminal">BenchmarkTools.Trial: 10000 samples with 966 evaluations.
- Range (min … max):  56.905 ns …  7.125 μs  ┊ GC (min … max): 0.00% … 98.34%
- Time  (median):     63.362 ns              ┊ GC (median):    0.00%
- Time  (mean ± σ):   73.214 ns ± 77.865 ns  ┊ GC (mean ± σ):  1.42% ±  1.65%
+<pre id="plutouiterminal">BenchmarkTools.Trial: 10000 samples with 995 evaluations.
+ Range (min … max):  29.967 ns …  4.848 μs  ┊ GC (min … max): 0.00% … 98.05%
+ Time  (median):     31.041 ns              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   35.762 ns ± 55.295 ns  ┊ GC (mean ± σ):  2.09% ±  1.67%
 
-  ▆▆▄█▇▄▅▅▄▅▅▄▂▂▂▂▁▁▁▁▁▁     ▁      ▁▁▁  ▁▁▁▂▃▃▂▂▁            ▂
-  ████████████████████████████████████████████████████▇██▆▆▇▆ █
-  56.9 ns      Histogram: log(frequency) by time       125 ns &lt;
+  █▃▆▅▂                                                       ▁
+  ██████▇▇▆▆▇▇▆▆▆▆▅▅▄▆▅▃▆▁▄▅▅▅▁▄▃▄▅▅▁▄▄▃▃▃▄▅▁▅▄▄▅▁▄▁▄▁▅▁▁▃▃▅▅ █
+  30 ns        Histogram: log(frequency) by time       146 ns &lt;
 
  Memory estimate: 16 bytes, allocs estimate: 1.
 </pre>
@@ -112,14 +112,14 @@ end</code></pre>
 <pre class='language-julia'><code class='language-julia'>with_benchmark_terminal() do
     @benchmark double(typednumbers, :one)
 end</code></pre>
-<pre id="plutouiterminal">BenchmarkTools.Trial: 10000 samples with 994 evaluations.
- Range (min … max):  30.721 ns …  8.184 μs  ┊ GC (min … max): 0.00% … 98.32%
- Time  (median):     32.460 ns              ┊ GC (median):    0.00%
- Time  (mean ± σ):   35.884 ns ± 85.784 ns  ┊ GC (mean ± σ):  3.19% ±  1.67%
+<pre id="plutouiterminal">BenchmarkTools.Trial: 10000 samples with 996 evaluations.
+ Range (min … max):  15.962 ns …  5.502 μs  ┊ GC (min … max): 0.00% … 98.75%
+ Time  (median):     18.079 ns              ┊ GC (median):    0.00%
+ Time  (mean ± σ):   19.896 ns ± 56.117 ns  ┊ GC (mean ± σ):  3.27% ±  1.38%
 
-  ▅█▆▆▅▄▃▂▁▂▂▄▅▅▄▃▂▂▂▂▁                                       ▂
-  ███████████████████████▇▆▆▆▆▅▆▆▅▅▅▆▄▅▄▃▅▅▄▄▄▃▄▃▅▂▂▅▄▅▆▆▆▆▇▆ █
-  30.7 ns      Histogram: log(frequency) by time        60 ns &lt;
+         ▁ █                                                   
+  ▁▂▂▂▂▃▃███▇▄▂▂▂▁▂▂▂▂▂▃▄▄▄▃▃▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ ▂
+  16 ns           Histogram: frequency by time        28.4 ns &lt;
 
  Memory estimate: 16 bytes, allocs estimate: 1.
 </pre>
@@ -135,13 +135,10 @@ end</code></pre>
 end;</code></pre>
 
 <div class='manifest-versions'>
-<p>Built with Julia 1.11.7 and</p>
+<p>Built with Julia 1.12.4 and</p>
 BenchmarkTools 1.3.2<br>
 PlutoUI 0.7.51
 </div>
 
 <!-- PlutoStaticHTML.End -->
 ~~~
-
-_To run this tutorial locally, download [this file](/tutorials/benchmarking.jl) and open it with
-[Pluto.jl](https://plutojl.org)._
