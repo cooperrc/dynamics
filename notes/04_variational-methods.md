@@ -14,11 +14,11 @@ and springs.
 
 ## The Action Principle and Variations
 
-The action $L $is defined as the difference between kinetic energy $T$
-and potential energy $V $(i.e., $L = T - V$). The principle of least
-action states that the true path of a system (such as the motion of a
-particle) is the one that makes the **integral of the action over time**—the
-**action functional**—as small as possible between two moments in time.
+The **Lagrangian** $L$ is defined as the difference between kinetic energy $T$
+and potential energy $V$ (i.e., $L = T - V$). The **Action** $S$ is the time integral
+of the Lagrangian. The principle of least action states that the true path of a system 
+(such as the motion of a particle) is the one that minimizes this integral **—the
+**action functional**—between two moments in time.
 
 Mathematically, this is expressed as:
 
@@ -38,7 +38,7 @@ Starting from the variation of the action:
 
 $\delta S = \int_{t_1}^{t_2} \delta L \, dt$
 
-we expand the change in the Lagrangian $\delta L $using the chain rule.
+we expand the change in the Lagrangian $\delta L$ using the chain rule.
 This results in terms involving changes in position ($\delta x$) and
 velocity ($\delta v$). By integrating by parts one of these terms, we
 separate the contributions into boundary terms and bulk terms.
@@ -115,7 +115,7 @@ general framework.
 
 In summary, the video explains how the **principle of least action** is
 formulated mathematically using the **Lagrangian formalism**. By expressing
-the action as the difference between kinetic and potential energy, and
+the action in terms of the systems kinetic and potential energy, and
 applying calculus of variations, we derive **second-order differential
 equations** that govern the motion of mechanical systems. This approach
 provides a powerful and elegant way to connect energy considerations with the
