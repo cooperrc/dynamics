@@ -10,9 +10,13 @@ using Plots, OrdinaryDiffEq
 # ╔═╡ 8845bdf4-c621-4612-b1ef-40a82526d0ca
 md"""# Using generalized coordinates and Lagrange Equations
 
+[![Generalized Coordinates part 1](https://img.youtube.com/vi/9HsI6DQ5ddw/0.jpg)](https://www.youtube.com/watch?v=9HsI6DQ5ddw "Generalized Coordinates part 1 - click to watch")
+
+[![Generalized Coordinates part 2](https://img.youtube.com/vi/WaPgd_RsiXc/0.jpg)](https://www.youtube.com/watch?v=WaPgd_RsiXc "Generalized Coordinates part 2 - click to watch")
+
 In this example, we are considering the motion of 3 objects attached by pulleys to a supporting ceiling. 
 
-![Three blocks attached to two pulleys. Block one is connected to the second pulley and blocks 2 and 3 and attached](./)
+![Three blocks attached to two pulleys. Block one is connected to the second pulley and blocks 2 and 3 and attached](https://raw.githubusercontent.com/cooperrc/dynamics/refs/heads/main/images/pulley-system.png)
 
 This system has 5 moving parts: 2 pulleys and 3 blocks
 
@@ -63,13 +67,18 @@ _or_
 """
 
 # ╔═╡ 00bece6d-cdbf-482e-adef-f4799dc2d7ca
-md"""If all the masses are equal, only $y_1$ should change. If $m_2+m_3 = m_1$, what happens next? Will the motion of blocks 2 and 3 create tension on block 1?
+md"""If all the masses are equal, only $y_1$ should change. If $m_2+m_3 = m_1$, what happens next? Will the motion of blocks 2 and 3 move block 1?
 
 """
 
 # ╔═╡ 48762a8a-d96b-43e0-a279-c0bb38bb1205
+@doc raw"""
+Solve for accelerations a1 and a2 for motion of blocks in the given pulley system. 
+1. $(m_1 + m_2 + m_3)\ddot{y}_1 + (m_3 - m_2)\ddot{y}_2 = (m_1 - m_2 - m_3)g$
+2. $(m_3 - m_2)\ddot{y}_1 + (m_2 + m_3)\ddot{y}_2 = (m_2 - m_3)g$
+"""
 function pulley_accel(m1, m2, m3)
-	
+
 	g = 9.81
 	
 	M = [m1+m2+m3 m3 - m2;
@@ -80,18 +89,17 @@ function pulley_accel(m1, m2, m3)
 	return M\b
 end
 
-# ╔═╡ f18ca038-b625-4214-a662-21bd520f7216
-pulley_accel(1, 1, 1)
-
 # ╔═╡ 5c099fb4-05e8-4677-ac27-5cf7ba6a2d04
 pulley_accel(1, 0.8, 0.2)
 
 # ╔═╡ 05c630ef-de36-4492-8b5a-a8c8455156f9
-md"""kinematic equations demonstrate motion
+md"""
+## Wrapping up
+We have constant acceleration for three blocks with constrained motion. The kinematic equations demonstrate motion
 
 $x_i(t) = x_0 + v_0t + \frac{1}{2}at^2$
 
-Below, there is a lot of filler functions for plotting pulleys and blocks. The result is that you can play with the masses of each block to see the motion over 0.5 sec. 
+Below, there are a lot of filler functions for plotting pulleys and blocks. The result is that you can play with the masses of each block to see the motion over 0.5 sec. Try some different values for $m_1,~m_2,~m_3$ and see what the results are? Can you get $m_1$ to stay motionless while $m_2$ and $m_3$ move?
 """
 
 # ╔═╡ 3152bf14-d14a-44b9-beb9-2281b01b19f3
@@ -2465,11 +2473,10 @@ version = "1.13.0+0"
 
 # ╔═╡ Cell order:
 # ╠═8845bdf4-c621-4612-b1ef-40a82526d0ca
-# ╟─2ab528c2-baf7-4f07-a761-3b0765d04c9f
+# ╠═2ab528c2-baf7-4f07-a761-3b0765d04c9f
 # ╠═2efb33b8-0dc6-11f1-a154-e7b56b5e32cd
-# ╠═00bece6d-cdbf-482e-adef-f4799dc2d7ca
+# ╟─00bece6d-cdbf-482e-adef-f4799dc2d7ca
 # ╠═48762a8a-d96b-43e0-a279-c0bb38bb1205
-# ╠═f18ca038-b625-4214-a662-21bd520f7216
 # ╠═5c099fb4-05e8-4677-ac27-5cf7ba6a2d04
 # ╠═05c630ef-de36-4492-8b5a-a8c8455156f9
 # ╟─3152bf14-d14a-44b9-beb9-2281b01b19f3
