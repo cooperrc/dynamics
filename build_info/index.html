@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/dynamics/assets/favicon.png">
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      processEscapes: true,
+    }
+  };
+</script>
+
+<!-- This weird alignment is required by Franklin's parser. -->
+<script
+    async
+    src="/dynamics/assets/MathJax/MathJax-3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff">
+}
+</style>
+
+  <link rel="stylesheet"
+  href="/dynamics/assets/Highlight/cdn-release-11.5.0/build/styles/github.min.css">
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/highlight.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia-repl.min.js">
+</script>
+
+<script>
+  hljs.configure({tabReplace: '    '});
+  hljs.highlightAll();
+</script>
+
+    <style>
+    @font-face {
+      font-family: JuliaMono-Regular;
+      src: url("/dynamics//assets/JuliaMono/juliamono-0.044/webfonts/JuliaMono-Regular.woff2");
+    }
+    </style>
+
+  <link rel="stylesheet" href="/dynamics/css/spectre.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-exp.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-icons.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-overrides.css">
+  <link rel="stylesheet" href="/dynamics/css/docs.min.css">
+
+  <title>Template instructions - Advanced Dynamics</title>
+  <meta name="description" content="Exploring Lagrangian mechanics with
+  the Julia language and Pluto notebooks.">
+</head>
+<body>
+  <div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <a class="off-canvas-toggle btn btn-link btn-action" href="#sidebar"><i class="icon icon-menu"></i></a>
+    <div class="btns d-flex">
+      <a class="btn btn-primary ml-1"
+        href="https://github.com/cooperrc/dynamics">GitHub</a>
+    </div>
+</div>
+
+<div id="sidebar" class="docs-sidebar off-canvas-sidebar">
+
+<div class="docs-brand">
+    <h5><a href="/dynamics/">Dynamics</a></h5>
+</div>
+
+<div class="docs-nav">
+<div class="accordion-container">
+  <ul class="menu menu-nav">
+    <div class="menu-header">Getting Started</div>
+    <li class='menu-item '><a href='/dynamics/intro_to_Cooper/'>About Prof. Cooper</a></li>
+    <li class='menu-item '><a href='/dynamics/syllabus/'>Course Syllabus</a></li>
+
+    <br/>
+    <div class="menu-header">Module_01</div>
+    <li class='menu-item '><a href='/dynamics/notes/01_newton-vs-lagrange/'>Newton-vs-Lagrange</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/02_eoms/'>Equations of Motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/ode/'>Harmonic oscillator</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/03_brachistochrone/'>The brachistochrone</a></li>
+    <li class='menu-item '><a href='/dynamics/notes/04_variational-methods/'>Principle of Least action and Lagrangians</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/06_least-action/'>Numerical integration and Least action</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/07_pendulum-equations/'>Pendulum - building
+    and solving equations of motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/08_generalized-coords/'>Using Generalized
+    coordinates</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/09_damped-pendulum/'>Rigid Body motion with
+    non-conservative forces</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<a class="off-canvas-overlay" href="#close"></a>
+
+
+<div class="off-canvas-content">
+<div id="content" class="docs-content">
+<div class="container">
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="template_instructions"><a href="#template_instructions" class="header-anchor">Template instructions</a></h1>
+<p>This is a template repository which can be used to create Julia tutorials websites. To use this website as a template, go to <a href="https://github.com/rikhuijzer/JuliaTutorialsTemplate">https://github.com/rikhuijzer/JuliaTutorialsTemplate</a> and click on the big &quot;Use this template&quot; button.</p>
+<p>Some general information is provided below. For more in-depth instructions about how to use this template, see <a href="/dynamics/getting-started">Getting started</a>.</p>
+<h2 id="what_does_this_template_do"><a href="#what_does_this_template_do" class="header-anchor">What does this template do?</a></h2>
+<p>This template contains multiple Pluto notebooks in the <code>tutorials</code> folder. These tutorials are listed on the left side of this webpage. Here,</p>
+<ol>
+<li><p>each tutorial is created and updated in <a href="https://github.com/fonsp/Pluto.jl">Pluto.jl</a>, which is super easy and convenient ✔️,</p>
+</li>
+<li><p>evaluated and converted to Markdown files in parallel and with caching &#40;for speed 🚀&#41; by <a href="https://github.com/rikhuijzer/PlutoStaticHTML.jl">PlutoStaticHTML.jl</a> <em>and</em></p>
+</li>
+<li><p>the tutorials are embedded in a nice website by <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> 😎.</p>
+</li>
+</ol>
+<p>These steps all run in an automated workflow, so changing a file in your copy of this template will cause the notebooks to be evaluated again &#40;or not, if nothing changed since the last run&#41;.</p>
+<h2 id="how_can_i_make_my_own_tutorials"><a href="#how_can_i_make_my_own_tutorials" class="header-anchor">How can I make my own tutorials?</a></h2>
+<p>The following is the short guide, for a more detailled guide, see <a href="/dynamics/getting-started">Getting started</a>.</p>
+<ul>
+<li><p>Copy the <a href="https://github.com/rikhuijzer/JuliaTutorialsTemplate">template</a> by clicking on big &quot;Use this template&quot; button.</p>
+</li>
+<li><p>Replace the Pluto notebooks &#40;<code>.jl</code> files&#41; inside <code>tutorials</code> by your own tutorials.</p>
+</li>
+<li><p>Change the menu at <code>layout/menu.html</code> to point to the right tutorials.</p>
+</li>
+<li><p>Modify any text however you like, the source code has an MIT license.</p>
+</li>
+<li><p>GitHub will take your tutorials and convert them automatically to a pretty website.</p>
+</li>
+</ul>
+<h2 id="what_alternatives_are_there_to_this_template"><a href="#what_alternatives_are_there_to_this_template" class="header-anchor">What alternatives are there to this template?</a></h2>
+<p>There is a template by Fons van der Plas at <a href="https://github.com/JuliaPluto/static-export-template">https://github.com/JuliaPluto/static-export-template</a>. That template is easier to use, sticks closer to the original Pluto appearance and has a link to a Binder for each notebook. In contrast, this template provides more flexibility in appearance and is more suitable for people who like to style their output or who even want to hide all code. Also, this template assumes some knowledge about GitHub Actions and hosting a website via GitHub Pages.</p>
+<script type="text/javascript" src="/dynamics/libs/ansi_up.js" defer></script>
+
+<div id="copyright" class="docs-footer container grid-lg">
+<a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Ryan C. Cooper
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

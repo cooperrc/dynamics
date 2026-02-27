@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/dynamics/assets/favicon.png">
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      processEscapes: true,
+    }
+  };
+</script>
+
+<!-- This weird alignment is required by Franklin's parser. -->
+<script
+    async
+    src="/dynamics/assets/MathJax/MathJax-3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff">
+}
+</style>
+
+  <link rel="stylesheet"
+  href="/dynamics/assets/Highlight/cdn-release-11.5.0/build/styles/github.min.css">
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/highlight.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia-repl.min.js">
+</script>
+
+<script>
+  hljs.configure({tabReplace: '    '});
+  hljs.highlightAll();
+</script>
+
+    <style>
+    @font-face {
+      font-family: JuliaMono-Regular;
+      src: url("/dynamics//assets/JuliaMono/juliamono-0.044/webfonts/JuliaMono-Regular.woff2");
+    }
+    </style>
+
+  <link rel="stylesheet" href="/dynamics/css/spectre.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-exp.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-icons.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-overrides.css">
+  <link rel="stylesheet" href="/dynamics/css/docs.min.css">
+
+  <title>Principle of Least Action and Lagrangian Mechanics - Advanced Dynamics</title>
+  <meta name="description" content="Exploring Lagrangian mechanics with
+  the Julia language and Pluto notebooks.">
+</head>
+<body>
+  <div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <a class="off-canvas-toggle btn btn-link btn-action" href="#sidebar"><i class="icon icon-menu"></i></a>
+    <div class="btns d-flex">
+      <a class="btn btn-primary ml-1"
+        href="https://github.com/cooperrc/dynamics">GitHub</a>
+    </div>
+</div>
+
+<div id="sidebar" class="docs-sidebar off-canvas-sidebar">
+
+<div class="docs-brand">
+    <h5><a href="/dynamics/">Dynamics</a></h5>
+</div>
+
+<div class="docs-nav">
+<div class="accordion-container">
+  <ul class="menu menu-nav">
+    <div class="menu-header">Getting Started</div>
+    <li class='menu-item '><a href='/dynamics/intro_to_Cooper/'>About Prof. Cooper</a></li>
+    <li class='menu-item '><a href='/dynamics/syllabus/'>Course Syllabus</a></li>
+
+    <br/>
+    <div class="menu-header">Module_01</div>
+    <li class='menu-item '><a href='/dynamics/notes/01_newton-vs-lagrange/'>Newton-vs-Lagrange</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/02_eoms/'>Equations of Motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/ode/'>Harmonic oscillator</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/03_brachistochrone/'>The brachistochrone</a></li>
+    <li class='menu-item active'><a href='/dynamics/notes/04_variational-methods/'>Principle of Least action and Lagrangians</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/06_least-action/'>Numerical integration and Least action</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/07_pendulum-equations/'>Pendulum - building
+    and solving equations of motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/08_generalized-coords/'>Using Generalized
+    coordinates</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/09_damped-pendulum/'>Rigid Body motion with
+    non-conservative forces</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<a class="off-canvas-overlay" href="#close"></a>
+
+
+<div class="off-canvas-content">
+<div id="content" class="docs-content">
+<div class="container">
+<!-- Content appended here -->
+<div class="franklin-content"><h1 id="principle_of_least_action_and_lagrangian_mechanics"><a href="#principle_of_least_action_and_lagrangian_mechanics" class="header-anchor">Principle of Least Action and Lagrangian Mechanics</a></h1>
+<p><a href="https://www.youtube.com/watch?v&#61;x3D369t7598 &quot;Lagrangian - click to watch&quot;"><img src="https://img.youtube.com/vi/x3D369t7598/0.jpg" alt="Least Action and Lagrangian Mechanics" /></a></p>
+<h2 id="introduction_to_the_topic"><a href="#introduction_to_the_topic" class="header-anchor">Introduction to the Topic</a></h2>
+<p>This video explores the foundational concept of the <strong>principle of least action</strong> and its mathematical formulation through the <strong>Lagrangean approach</strong> to classical mechanics. The core idea is that physical systems naturally follow paths that minimize a quantity called the <strong>action</strong>. This principle underpins the equations of motion for objects subject to forces like gravity and springs.</p>
+<h2 id="the_action_principle_and_variations"><a href="#the_action_principle_and_variations" class="header-anchor">The Action Principle and Variations</a></h2>
+<p>The <strong>Lagrangian</strong> \(L\) is defined as the difference between kinetic energy \(T\) and potential energy \(V\) &#40;i.e., \(L = T - V\)&#41;. The <strong>Action</strong> \(S\) is the time integral of the Lagrangian. The principle of least action states that the true path of a system  &#40;such as the motion of a particle&#41; is the one that minimizes this integral <strong>—the **action functional</strong>—between two moments in time.</p>
+<p>Mathematically, this is expressed as:</p>
+\(\int_{t_1}^{t_2} L(t) \, dt\)
+<p>being minimized among all possible paths between the initial and final states. To formalize this, we consider small variations &#40;or &quot;deviations&quot;&#41; from the true path and set the first variation of the action to zero. This leads to a system of <strong>Euler-Lagrange equations</strong>, which are <strong>differential equations</strong> describing the motion of the system.</p>
+<h2 id="derivation_and_key_steps"><a href="#derivation_and_key_steps" class="header-anchor">Derivation and Key Steps</a></h2>
+<p>The derivation involves calculus of variations and <strong>integration by parts</strong>. Starting from the variation of the action:</p>
+\(\delta S = \int_{t_1}^{t_2} \delta L \, dt\)
+<p>we expand the change in the Lagrangian \(\delta L\) using the chain rule. This results in terms involving changes in position &#40;\(\delta x\)&#41; and velocity &#40;\(\delta v\)&#41;. By integrating by parts one of these terms, we separate the contributions into boundary terms and bulk terms.</p>
+<p>Crucially, the bulk terms &#40;those not evaluated at the endpoints in time&#41; must vanish for the variation to be stationary. This process <strong>separates variables</strong>, allowing us to write a <strong>Lagrange equation</strong> where the derivative of one term &#40;related to velocity&#41; minus another term &#40;related to position&#41; equals zero.</p>
+<p>The final key equation obtained is: \(\frac{d}{dt}\left( \frac{\partial L}{\partial \dot{q}} \right) - \frac{\partial L}{\partial q} = 0\) For a simple case where \(L = T - V\) depends on position \(q\) and velocity \(\dot{q}\), this yields a <strong>second-order ordinary differential equation</strong> describing the motion of a system.</p>
+<h2 id="connection_to_kinetic_and_potential_energy"><a href="#connection_to_kinetic_and_potential_energy" class="header-anchor">Connection to Kinetic and Potential Energy</a></h2>
+<p>The Lagrangian naturally incorporates kinetic energy, which depends on both position and velocity, and potential energy, which depends only on position &#40;though the formalism allows for more general forms&#41;. The separation of these terms reflects the conservation of energy in the absence of external forces &#40;like friction&#41;.</p>
+<p>The method implicitly requires <strong>boundary conditions</strong> at the start and end times &#40;\(t_1 \)and \(t_2\)&#41;, such as the initial and final positions and velocities. This is distinct from boundary conditions in space &#40;like fixed endpoints&#41;, but the principle still selects the physically meaningful path.</p>
+<h2 id="the_role_of_the_euler-lagrange_equation"><a href="#the_role_of_the_euler-lagrange_equation" class="header-anchor">The Role of the Euler-Lagrange Equation</a></h2>
+<p>The resulting differential equation is <strong>nonlinear in general</strong>, but for many simple systems &#40;e.g., a particle in a conservative force field&#41;, it becomes a second-order ordinary differential equation. This equation uniquely determines the motion of the system once the Lagrangian is specified and the boundary conditions are set.</p>
+<p>A classic example is the <strong>harmonic oscillator</strong> or a <strong>pendulum</strong>, where the Lagrangian leads to the simple harmonic motion equation. More complex curves like cycloids or catenary shapes also emerge as solutions when the Lagrangian corresponds to specific physical systems &#40;e.g., a mass sliding under constant acceleration&#41;.</p>
+<h2 id="interpretation_and_physical_meaning"><a href="#interpretation_and_physical_meaning" class="header-anchor">Interpretation and Physical Meaning</a></h2>
+<p>The principle of least action is a statement that <strong>nature minimizes the action</strong> along its actual path. This is analogous to how a beam bends to minimize its length &#40;the straight line&#41; or a light ray travels the shortest path through a medium. In mechanics, the &quot;shortest path&quot; in configuration space is not always the straight line, but the path that balances kinetic and potential energies over time.</p>
+<p>The method requires <strong>no external work</strong> &#40;except possibly through boundary conditions&#41;, meaning energy is conserved between kinetic and potential forms. The integration by parts step highlights the <strong>trade-off between changes in velocity and position</strong> along the path.</p>
+<h2 id="relation_to_other_mathematical_tricks"><a href="#relation_to_other_mathematical_tricks" class="header-anchor">Relation to Other Mathematical Tricks</a></h2>
+<p>While the derivation in the video took a long route, there is a <strong>mathematical identity</strong> &#40;like the calculus of variations&#41; that simplifies finding the &quot;shortest path&quot; &#40;geodesic&#41; or minimal action curve. For example, in many cases, the shortest path between two points under a conservative force is a <strong>straight line in velocity-space or a curve of constant curvature</strong>, such as a cycloid or catenary. The Lagrangian method encapsulates these insights in a general framework.</p>
+<h2 id="wrapping_up"><a href="#wrapping_up" class="header-anchor">Wrapping Up</a></h2>
+<p>In summary, the video explains how the <strong>principle of least action</strong> is formulated mathematically using the <strong>Lagrangian formalism</strong>. By expressing the action in terms of the systems kinetic and potential energy, and applying calculus of variations, we derive <strong>second-order differential equations</strong> that govern the motion of mechanical systems. This approach provides a powerful and elegant way to connect energy considerations with the equations of motion. The key takeaway is that the path taken by a physical system is not just any path, but the one that makes the action functional stationary—thereby balancing the system&#39;s energy in the most efficient way possible.</p>
+<script type="text/javascript" src="/dynamics/libs/ansi_up.js" defer></script>
+
+<div id="copyright" class="docs-footer container grid-lg">
+<a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Ryan C. Cooper
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>

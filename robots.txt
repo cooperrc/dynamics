@@ -1,0 +1,4 @@
+Sitemap: https://cooperrc.github.io/dynamics/sitemap.xml
+
+User-agent: *
+Disallow:
