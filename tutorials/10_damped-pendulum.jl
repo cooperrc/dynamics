@@ -4,79 +4,191 @@
 using Markdown
 using InteractiveUtils
 
-# ╔═╡ b6b44ef1-ff38-4187-99d1-429ba58b63ae
-using Symbolics, Plots, OrdinaryDiffEq, Latexify, ModelingToolkit
+# ╔═╡ e7f6850c-172b-11f1-8d92-8984d091598a
+using ModelingToolkit, OrdinaryDiffEq, Plots, Latexify 
 
-# ╔═╡ 12ffe5fc-1292-11f1-ba3f-b76ebcbee806
+# ╔═╡ 21b17659-da20-4306-9364-a54751514e5b
 md"""
-# Rigid body motion with _non-conservative_ forces
+# Solving the damped pendulum equations of motion
 
-[![Rigid body motion with _non-conservative_ forces](https://img.youtube.com/vi/nve8QSUjixs/0.jpg)](https://www.youtube.com/watch?v=nve8QSUjixs "Rigid body motion with _non-conservative_ forces - click to watch")
+[![Damped pendulum numerical solution part 1](https://img.youtube.com/vi/lIiBIkiQWEU/0.jpg)](https://www.youtube.com/watch?v=lIiBIkiQWEU "Damped pendulum numerical solution part 1 - click to watch")
 
-In this video, we go through the definitions of 
-1. Kinematics
-2. Kinetics
-3. Variational calculus
+[![Damped pendulum numerical solution part 2](https://img.youtube.com/vi/EOZNMCmjY28/0.jpg)](https://www.youtube.com/watch?v=EOZNMCmjY28 "Damped pendulum numerical solution part 2 - click to watch")
 
-to arrive at the equations of motion for a _compound pendulum_ with a support that has both stiffness and damping (modeled here as a spring and damper). 
+The equations of motion for this damped oscillating system are as follows, 
 
-![Compound pendulum as a bar with spring and damper](https://raw.githubusercontent.com/cooperrc/dynamics/refs/heads/main/images/damped-pendulum.png)
-
-## Kinematics
-
-We determine the position of the pendulum is $q_2=[x_2,~y_2,~\theta_2] = [f_1(x,~\theta),~f_2((x,~\theta)),~\theta]$
-
-Where the generalized coordinates are $q = [x,~\theta]$ so the position and orientation must be written as functions of these variables. The position of the pendulum is thus
-
-$\mathbf{r} = (x+\frac{L}{2}\sin\theta)\hat{i} + \frac{L}{2}\sin\theta\hat{j}$
-
-and velocity is
-
-$\mathbf{v} = (\dot{x}-\frac{L}{2}\dot{\theta}\cos\theta)\hat{i} + \frac{L}{2}\dot{\theta}\cos\theta\hat{j}$
-
-## Lagrangian of damped pendulum
-
-The form of the Lagrangian (action, $L=T-V$) then results from the position and velocity definitions, 
-
-$L = \frac{1}{2}m\left(\dot{x}^2+\frac{L^2}{3}\dot{\theta}^2 + L\dot{x}\dot{\theta}\cos\theta\right) - \frac{1}{2}kx^2 - mg\frac{L}{2}(1 - \cos\theta)$
-
+1. $m\ddot{x} + \frac{mL}{2}\ddot{\theta}\cos\theta - \frac{mL}{2}\dot{\theta}^2\sin\theta + b\dot{x} + kx = 0$
+2. $\frac{mL}{2}\ddot{x}\cos\theta + \frac{mL^2}{3}\ddot{\theta} + \frac{mgL}{2}\sin\theta = 0$
 """
 
-# ╔═╡ c6ced57e-3cda-4327-909e-843a04971e89
+# ╔═╡ e9d20748-6ee6-4f41-a056-036726292a3e
+md"""
+In order to solve for the motion of the pendulum, we assign values to the spring stiffness, damper, gravity, mass, and length of the compound pendulum system. 
+"""
+
+# ╔═╡ 4afda0e9-77e1-4a48-9cf7-4c6a53df2086
 begin
-@independent_variables t
-@parameters m=0.4 L = 1 g = 9.81 k = 0.1 b = 0.2
-@variables θ(t), x(t)    # θ and x are functions of time
-D = Differential(t) # time derivative operator
-
-# Define kinetic and potential energy
-T = 1/2 * m *(D(x)^2 + L^2 *D(θ)^2/3 + L*D(x)*D(θ)*cos(θ))
-V = 1/2*k*x^2 + m * g * L/2 * (1 - cos(θ))
-
-# Lagrangian
-Lag = T - V
+	k = 2 # N/m
+	b = 5 # kg/s
+	g = 9.81 # m/s/s
+	m = 0.1 # kg mass of pendulum bar
+	L = 0.9 # m length of pendulum bar
 end
 
-# ╔═╡ 10bfecb8-907c-490f-b305-08f33a4b289b
-begin
-dL_dθdot = Symbolics.derivative(Lag, D(θ))
-dL_dθ    = Symbolics.derivative(Lag, θ)
+# ╔═╡ 66975307-f6b0-4a7c-a560-b5d1612a9a28
+md"""## Coupled equations of motion
 
-EL_equation_θ = expand_derivatives(D(dL_dθdot) - dL_dθ)
-simplify(EL_equation_θ)
+In general, the motion of one degree of freedom can affect other degrees of freedom. This creates _coupled differential equations_. Each integration step requires a solution to the set of equations to find the acceleration of the degrees of freedom. 
+
+In this case, we create 2 functions:
+1. a mass-matrix function, `M(theta)` that changes with angle
+2. a `pendulum!` function that updates the changes in our 'state' variable derivatives, `dy` $=[\dot{x},~\dot{\theta},~\ddot{x},~\ddot{\theta}]$
+> - of note for the `pendulum!` function is that the `!` is a [Julia convention](https://docs.julialang.org/en/v1/manual/functions/#man-argument-passing) that the first argument is being mutated
+> - [variable mutation](https://discourse.julialang.org/t/assignment-and-mutation/19119) is subtly different than "assigning" a value. 
+> - why mutate vs assign??: There are pros/cons to each. Here it makes sense since the value of `dy` is used, but not saved anywhere so its better to update with current values. 
+"""
+
+# ╔═╡ acca5f0b-9e46-44ea-938b-371788b04b48
+M(theta) = [m m*L/2*cos(theta);
+	m*L/2*cos(theta) m*L^2/3]
+
+# ╔═╡ ece6360e-a833-46bb-90d7-1df1d87ba6dc
+function pendulum!(dy, y, params, time)
+    # physical parameters 
+    b, k, m, L, g = params
+
+	x, theta, dx, dtheta = y
+	
+	dy[1:2] .= [dx, dtheta]
+	
+	rhs = [-b*dx-k*x+m*L*dtheta^2*sin(theta);
+		  -m*g*L/2*sin(theta)]
+
+	dy[3:4] .= M(theta)\rhs
+	return nothing
 end
 
-# ╔═╡ 9bea69aa-0bb8-43aa-8040-4b55a507a341
-begin
-dL_dxdot = Symbolics.derivative(Lag, D(x))
-dL_dx    = Symbolics.derivative(Lag, x)
+# ╔═╡ 0899d61d-e2d2-474a-bd61-28e65cc4aaf7
+md"""
+## Compare damping terms and response
 
-EL_equation_x = expand_derivatives(D(dL_dxdot) - dL_dx)
-simplify(EL_equation_x)
+Here, we try 4 different damping terms to see what effect it has on the motion of the pendulum. Counterintuitively, the $b=1000~kg/s$ has the smallest effect on pendulum motion. 
+"""
+
+# ╔═╡ 584a95dc-6d4d-4095-85a3-76026a12d9b3
+begin
+# plots_array = []
+P = plot()
+for b in [0.5, 1, 1.5, 100]
+	initial_state = [0.0, pi/3, 0.0, 0.0]
+	time_span = (0.0, 10.0)
+	params = (b, k, m, L, g)
+	problem = ODEProblem(pendulum!, initial_state, time_span, params)
+	solution = solve(problem, Tsit5())
+	plot!(P, solution.t, 
+		  solution[2,:]*180/pi, 
+		 label = "b = $b kg/s",
+		 linewidth = 4)
+	
+end
+P
 end
 
-# ╔═╡ ba395d65-706d-4915-9e97-a3fa7b92cb5d
-eqs_lagrange = [EL_equation_x ~ -b*D(x); EL_equation_θ ~ 0]
+# ╔═╡ 8b9d282c-e7eb-48d8-ab11-90202b7bc2fd
+begin
+	initial_state = [0.0, pi/3, 0.0, 0.0]
+	time_span = (0.0, 10.0)
+	params = (0.5, k, m, L, g)
+	problem = ODEProblem(pendulum!, initial_state, time_span, params)
+	solution = solve(problem, Tsit5());
+end
+
+# ╔═╡ 4356e089-6d6e-4282-a218-97f6d59c2c44
+begin
+# --- basic geometric parameters (edit as needed) ---
+rail_y_position     = 0.0
+car_half_length     = 0.8
+car_height          = 0.25
+spring_wall_x       = -2.0
+damper_wall_x       =  3.0
+pendulum_length     = L
+
+# --- function: build all objects for a single time index k ---
+function frame_data(position_x, angle_theta, k)
+    cart_center_x = position_x[k]
+
+    # car (rect) corners
+    car_left_x   = cart_center_x - car_half_length
+    car_right_x  = cart_center_x + car_half_length
+    car_bottom_y = rail_y_position - car_height/2
+    car_top_y    = rail_y_position + car_height/2
+
+    # pendulum end point (angle from vertical, positive CCW)
+    pivot_x = cart_center_x
+    pivot_y = rail_y_position
+    bob_x   = pivot_x + pendulum_length * sin(angle_theta[k])
+    bob_y   = pivot_y - pendulum_length * cos(angle_theta[k])
+
+    return (car_left_x, car_right_x, car_bottom_y, car_top_y,
+            pivot_x, pivot_y, bob_x, bob_y)
+end
+end
+
+# ╔═╡ 19692abe-897f-4a0b-8d71-a3d6da362f98
+function plot_frame(position_x, angle_theta, k;
+                    x_limits = (-3.5, 4.0), y_limits = (-2.0, 1.5))
+
+    car_left_x, car_right_x, car_bottom_y, car_top_y,
+    pivot_x, pivot_y, bob_x, bob_y = frame_data(position_x, angle_theta, k)
+
+    plt = plot(xlim = x_limits, ylim = y_limits, aspect_ratio = :equal,
+               legend = false, framestyle = :box)
+
+
+    # spring: simple zig-zag polyline
+    spring_points_x = range(spring_wall_x, car_left_x; length = 10)
+    spring_mid_y    = rail_y_position - 0.15
+    spring_points_y = [rail_y_position - 0.15 * (-1)^i for i in 1:10]
+    plot!(plt, spring_points_x, spring_points_y, color = :black)
+
+    # damper: straight bar
+    damper_x = [car_right_x, damper_wall_x]
+    damper_y = [rail_y_position, rail_y_position]
+    plot!(plt, damper_x, damper_y, lw = 3, color = :gray)
+
+    # car rectangle
+    car_x = [car_left_x, car_right_x, car_right_x, car_left_x, car_left_x]
+    car_y = [car_bottom_y, car_bottom_y, car_top_y, car_top_y, car_bottom_y]
+    plot!(plt, car_x, car_y, color = :black)
+
+    # pendulum rod and bob
+    plot!(plt, [pivot_x, bob_x], [pivot_y, bob_y], lw = 5, color = :blue)
+
+    return plt
+end
+
+
+# ╔═╡ 4aa280dc-67e9-43f4-abe6-f5fd1c22d61f
+md""" 
+## Visualize the motion
+
+The `frame_data` and `plot_frame` functions were generated with copilot help, 
+
+> Julia Assistant input, 
+>
+> ![sketch of a compound pendulum with a spring and damper attached to a moving base](https://raw.githubusercontent.com/cooperrc/dynamics/refs/heads/main/images/damped-pendulum.png)
+> 
+> `I want to create julia animations that make this image with a spring, damper, and compound pendulum based on vectors for x position and angle theta`
+
+The resulting animation shows the damped motion with the `solution` created above. 
+
+Here, we can see how the coupled accelerations help to damp the pendulum's oscillations. 
+"""
+
+# ╔═╡ 45be8c69-20e5-4a4e-aabd-c93defe2765f
+@gif for i in 1:length(solution)
+	plot_frame(solution[1,:], solution[2,:], i)
+end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -85,14 +197,12 @@ Latexify = "23fbe1c1-3f47-55db-b15f-69d7ec21a316"
 ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
 OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
-Symbolics = "0c5d862f-8b57-4792-8d23-62f2024744c7"
 
 [compat]
 Latexify = "~0.16.10"
 ModelingToolkit = "~11.10.0"
 OrdinaryDiffEq = "~6.108.0"
 Plots = "~1.41.5"
-Symbolics = "~7.13.0"
 """
 
 # ╔═╡ 00000000-0000-0000-0000-000000000002
@@ -101,7 +211,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.12.4"
 manifest_format = "2.0"
-project_hash = "96a06eaabcfd5b1c4125954e6b77feffd643dd4a"
+project_hash = "1fde20a06f0f8f6f1400f781b8153cdac9b70421"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "f7304359109c768cf32dc5fa2d371565bb63b68a"
@@ -1836,9 +1946,9 @@ version = "0.2.2"
 
 [[deps.PreallocationTools]]
 deps = ["Adapt", "ArrayInterface", "PrecompileTools"]
-git-tree-sha1 = "c05b4c6325262152483a1ecb6c69846d2e01727b"
+git-tree-sha1 = "6c6925c42710b794dbb8fe7ab0cbc393c5b59fbe"
 uuid = "d236fae5-4411-538c-8e31-a6e3d9e00b46"
-version = "0.4.34"
+version = "1.0.0"
 
     [deps.PreallocationTools.extensions]
     PreallocationToolsForwardDiffExt = "ForwardDiff"
@@ -2733,11 +2843,19 @@ version = "1.13.0+0"
 """
 
 # ╔═╡ Cell order:
-# ╠═12ffe5fc-1292-11f1-ba3f-b76ebcbee806
-# ╠═b6b44ef1-ff38-4187-99d1-429ba58b63ae
-# ╠═c6ced57e-3cda-4327-909e-843a04971e89
-# ╠═10bfecb8-907c-490f-b305-08f33a4b289b
-# ╠═9bea69aa-0bb8-43aa-8040-4b55a507a341
-# ╠═ba395d65-706d-4915-9e97-a3fa7b92cb5d
+# ╟─21b17659-da20-4306-9364-a54751514e5b
+# ╠═e7f6850c-172b-11f1-8d92-8984d091598a
+# ╟─e9d20748-6ee6-4f41-a056-036726292a3e
+# ╠═4afda0e9-77e1-4a48-9cf7-4c6a53df2086
+# ╟─66975307-f6b0-4a7c-a560-b5d1612a9a28
+# ╠═acca5f0b-9e46-44ea-938b-371788b04b48
+# ╠═ece6360e-a833-46bb-90d7-1df1d87ba6dc
+# ╟─0899d61d-e2d2-474a-bd61-28e65cc4aaf7
+# ╠═584a95dc-6d4d-4095-85a3-76026a12d9b3
+# ╠═8b9d282c-e7eb-48d8-ab11-90202b7bc2fd
+# ╟─4356e089-6d6e-4282-a218-97f6d59c2c44
+# ╟─19692abe-897f-4a0b-8d71-a3d6da362f98
+# ╟─4aa280dc-67e9-43f4-abe6-f5fd1c22d61f
+# ╠═45be8c69-20e5-4a4e-aabd-c93defe2765f
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
