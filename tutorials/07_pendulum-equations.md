@@ -57,9 +57,6 @@ end</code></pre>
 <pre class="code-output documenter-example-output" id="var-θ_double_dot">RuntimeGeneratedFunction(#=in Symbolics=#, #=using Symbolics=#, :((var"θ(t)", var"Differential(t, 1)(θ(t))", g, L)-&gt;#= /home/ryan/.julia/packages/Symbolics/iJWhW/src/build_function.jl:143 =# @inbounds(begin
               #= /home/ryan/.julia/packages/Symbolics/iJWhW/src/build_function.jl:143 =#
               begin
-                  #= /home/ryan/.julia/packages/SymbolicUtils/vtVwT/src/code.jl:584 =#
-                  #= /home/ryan/.julia/packages/SymbolicUtils/vtVwT/src/code.jl:585 =#
-                  #= /home/ryan/.julia/packages/SymbolicUtils/vtVwT/src/code.jl:586 =#
                   (/)((*)((*)(-1, g), NaNMath.sin(var"θ(t)")), L)
               end
           end)))</pre>
@@ -155,7 +152,7 @@ end</code></pre>
 DifferentialEquations 7.17.0<br>
 Latexify 0.16.10<br>
 OrdinaryDiffEq 6.108.0<br>
-Plots 1.41.5<br>
+Plots 1.41.6<br>
 Symbolics 7.13.0
 </div>
 

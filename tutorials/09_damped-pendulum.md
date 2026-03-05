@@ -61,7 +61,7 @@ k ~ x\left( t \right) + 0.5 ~ \left( 2 ~ \frac{\mathrm{d}^{2} ~ x\left( t \right
 Latexify 0.16.10<br>
 ModelingToolkit 11.10.0<br>
 OrdinaryDiffEq 6.108.0<br>
-Plots 1.41.5<br>
+Plots 1.41.6<br>
 Symbolics 7.13.0
 </div>
 

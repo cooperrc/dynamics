@@ -85,7 +85,7 @@ end</code></pre>
 <div class='manifest-versions'>
 <p>Built with Julia 1.12.4 and</p>
 OrdinaryDiffEq 6.108.0<br>
-Plots 1.41.5
+Plots 1.41.6
 </div>
 
 <!-- PlutoStaticHTML.End -->
