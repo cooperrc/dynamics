@@ -46,7 +46,7 @@ function append_notebook_links()
     dir = TUTORIALS_DIR
     md_paths = filter(endswith(".md"), readdir(dir; join=true))
     for md_path in md_paths
-        md_path = replace(md_path, r"_" => "\\_")
+        md_path = replace(md_path, r"_" => "\_")
         md_file = basename(md_path)
         without_extension, _ = splitext(md_file)
         jl_file = "$(without_extension).jl"
