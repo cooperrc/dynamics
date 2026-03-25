@@ -90,3 +90,6 @@ Plots 1.41.6
 
 <!-- PlutoStaticHTML.End -->
 ~~~
+
+_To run this tutorial locally, download [this file](/tutorials/08\_generalized-coords.jl) and open it with
+[Pluto.jl](https://plutojl.org)._
