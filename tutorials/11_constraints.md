@@ -4,7 +4,7 @@
     # This information is used for caching.
     [PlutoStaticHTML.State]
     input_sha = "ef8b3e4a319e384ca23e48dffb3f9d9dea6e3887cf2f71357af6e44516b664d2"
-    julia_version = "1.12.4"
+    julia_version = "1.12.5"
 -->
 
 <div class="markdown"><h1 id="Creating-Kinematic-Constraints">Creating Kinematic Constraints</h1><p><a href="https://www.youtube.com/watch?v=mZIOv7meGJo &quot;Creating Kinematic Constraints - click to watch&quot;"><img alt="Creating Kinematic Constraints" src="https://img.youtube.com/vi/mZIOv7meGJo/0.jpg"/></a></p></div>
@@ -21,12 +21,9 @@
 
 <div class="markdown"><h2 id="7.-Adding-a-Time‑Varying-Constraint">7. Adding a Time‑Varying Constraint</h2><p>If the door is pushed upward at constant speed: <span class="tex">\(R_{1y} = 2t \quad \Rightarrow \quad \dot{R}_{1y} = 2\)</span> This creates a third constraint to be incorporated into the system.</p><h2 id="8.-Solving-the-System">8. Solving the System</h2><p>At each timestep:</p><ol><li><p><strong>Position solve:</strong> find <span class="tex">\(q\)</span> such that <span class="tex">\(C(q,t)=0\)</span></p></li><li><p><strong>Velocity solve:</strong> solve linear system <span class="tex">\(C_q \dot{q} = -C_t\)</span></p></li></ol><p>These yield consistent positions and velocities that satisfy all kinematic constraints.</p><h2 id="Wrapping-Up">Wrapping Up</h2><p>This framework provides:</p><ul><li><p>Rigorous description of rigid‑body motion</p></li><li><p>Consistent enforcement of physical constraints</p></li><li><p>Linear velocity equations even for nonlinear positions</p></li><li><p>A foundation for forming differential‑algebraic equations used in multi‑body simulation</p></li></ul><p>Computational dynamics transforms geometry, motion, and constraint information into forms solvable by numerical tools such as Julia, MATLAB, or Python.</p></div>
 <div class='manifest-versions'>
-<p>Built with Julia 1.12.4 and</p>
+<p>Built with Julia 1.12.5 and</p>
 
 </div>
 
 <!-- PlutoStaticHTML.End -->
 ~~~
-
-_To run this tutorial locally, download [this file](/tutorials/11\_constraints.jl) and open it with
-[Pluto.jl](https://plutojl.org)._
