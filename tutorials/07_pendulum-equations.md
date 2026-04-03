@@ -151,10 +151,13 @@ end</code></pre>
 <p>Built with Julia 1.12.5 and</p>
 DifferentialEquations 7.17.0<br>
 Latexify 0.16.10<br>
-OrdinaryDiffEq 6.109.0<br>
+OrdinaryDiffEq 6.111.0<br>
 Plots 1.41.6<br>
 Symbolics 7.13.0
 </div>
 
 <!-- PlutoStaticHTML.End -->
 ~~~
+
+_To run this tutorial locally, download [this file](/tutorials/07\_pendulum-equations.jl) and open it with
+[Pluto.jl](https://plutojl.org)._
