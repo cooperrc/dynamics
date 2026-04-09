@@ -23,6 +23,16 @@ where the postion is (x, y) and its velocity is $(\dot{x},~\dot{y})$. The point 
 
 """
 
+# ╔═╡ 20f41a04-5a2e-46ae-a6db-081f768ecbc7
+@gif for i in range(1,N)
+	plt = plot_path_with_velocity!(q_sol, dq_sol; 
+							 index=i, 
+							 half_width=2, 
+							 arrow_scale=0.5,
+							)
+	title!(plt, "Flappy Bird Sine-wave")
+end
+
 # ╔═╡ 1bbba2b8-008c-4f55-87c6-f814aad03b87
 import Latexify
 
@@ -175,16 +185,6 @@ function plot_path_with_velocity!(
     return plt
 end
 
-
-# ╔═╡ 20f41a04-5a2e-46ae-a6db-081f768ecbc7
-@gif for i in range(1,N)
-	plt = plot_path_with_velocity!(q_sol, dq_sol; 
-							 index=i, 
-							 half_width=2, 
-							 arrow_scale=0.5,
-							)
-	title!(plt, "Flappy Bird Sine-wave")
-end
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
