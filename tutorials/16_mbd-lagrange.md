@@ -12,8 +12,8 @@ has
 - constraint Jacobian, $\mathbf{C}_{\mathbf{q}}$ that is $n_c \times
   n_b$
 - externally applied forces from springs, gravity, dampers, motors, etc.
-  $\mathbf{Q_e}$ that is $3 n_b$ long
-- reaction constraints, $\mathbf{Q_d$ that is $n_c$ long (every
+  $\mathbf{Q}_e$ that is $3 n_b$ long
+- reaction constraints, $\mathbf{Q}_d$ that is $n_c$ long (every
   constraint needs a reaction force to maintain the constraint)
 
 The set of equations leaves two unknown vectors in the left-hand side
