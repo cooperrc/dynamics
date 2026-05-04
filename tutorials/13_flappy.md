@@ -3,7 +3,7 @@
 <!--
     # This information is used for caching.
     [PlutoStaticHTML.State]
-    input_sha = "1a36ee57fdcd5e73189b4c296adf965af317f24f2ae487e08d196f1dc9ca557d"
+    input_sha = "67f99dfcb2c66d1df1678cff85f65102edbedc22c68aaeec4132f807fd767f1d"
     julia_version = "1.12.5"
 -->
 

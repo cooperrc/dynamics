@@ -25,3 +25,7 @@ equation,
 By solving these equations at each time step, we can maintain
 constraints and calculate the following velocity and position of the
 multibody system. 
+
+
+_To run this tutorial locally, download [this file](/tutorials/16\_mbd-lagrange.jl) and open it with
+[Pluto.jl](https://plutojl.org)._

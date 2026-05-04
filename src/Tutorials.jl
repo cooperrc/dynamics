@@ -34,7 +34,7 @@ end
 function build()
     dir = TUTORIALS_DIR
     output_format = franklin_output
-    previous_dir = prev_dir()
+    previous_dir = TUTORIALS_DIR #prev_dir()
     bopts = BuildOptions(dir; output_format, previous_dir)
     hopts = OutputOptions(; append_build_context=true)
     build_notebooks(bopts, hopts)
