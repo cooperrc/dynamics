@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="/dynamics/assets/favicon.png">
+  <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ["\\(", "\\)"]],
+      processEscapes: true,
+    }
+  };
+</script>
+
+<!-- This weird alignment is required by Franklin's parser. -->
+<script
+    async
+    src="/dynamics/assets/MathJax/MathJax-3.2.2/es5/tex-mml-chtml.js">
+</script>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff">
+}
+</style>
+
+<style>
+@font-face {
+  src: url("/dynamics//assets/MathJax/MathJax-3.2.2/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff">
+}
+</style>
+
+  <link rel="stylesheet"
+  href="/dynamics/assets/Highlight/cdn-release-11.5.0/build/styles/github.min.css">
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/highlight.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia.min.js">
+</script>
+
+<script
+  src="/dynamics/assets/Highlight/cdn-release-11.5.0/build/languages/julia-repl.min.js">
+</script>
+
+<script>
+  hljs.configure({tabReplace: '    '});
+  hljs.highlightAll();
+</script>
+
+    <style>
+    @font-face {
+      font-family: JuliaMono-Regular;
+      src: url("/dynamics//assets/JuliaMono/juliamono-0.044/webfonts/JuliaMono-Regular.woff2");
+    }
+    </style>
+
+  <link rel="stylesheet" href="/dynamics/css/spectre.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-exp.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-icons.min.css">
+  <link rel="stylesheet" href="/dynamics/css/spectre-overrides.css">
+  <link rel="stylesheet" href="/dynamics/css/docs.min.css">
+
+  <title> - Advanced Dynamics</title>
+  <meta name="description" content="Exploring Lagrangian mechanics with
+  the Julia language and Pluto notebooks.">
+</head>
+<body>
+  <div class="docs-container off-canvas off-canvas-sidebar-show">
+  <div class="docs-navbar">
+    <a class="off-canvas-toggle btn btn-link btn-action" href="#sidebar"><i class="icon icon-menu"></i></a>
+    <div class="btns d-flex">
+      <a class="btn btn-primary ml-1"
+        href="https://github.com/cooperrc/dynamics">GitHub</a>
+    </div>
+</div>
+
+<div id="sidebar" class="docs-sidebar off-canvas-sidebar">
+
+<div class="docs-brand">
+    <h5><a href="/dynamics/">Dynamics</a></h5>
+</div>
+
+<div class="docs-nav">
+<div class="accordion-container">
+  <ul class="menu menu-nav">
+    <div class="menu-header">Getting Started</div>
+    <li class='menu-item '><a href='/dynamics/intro_to_Cooper/'>About Prof. Cooper</a></li>
+    <li class='menu-item '><a href='/dynamics/syllabus/'>Course Syllabus</a></li>
+
+    <br/>
+    <div class="menu-header">Module_01</div>
+    <li class='menu-item '><a href='/dynamics/notes/01_newton-vs-lagrange/'>Newton-vs-Lagrange</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/02_eoms/'>Equations of Motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/ode/'>Harmonic oscillator</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/03_brachistochrone/'>The brachistochrone</a></li>
+    <li class='menu-item '><a href='/dynamics/notes/04_variational-methods/'>Principle of Least action and Lagrangians</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/06_least-action/'>Numerical integration and Least action</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/07_pendulum-equations/'>Pendulum - building
+    and solving equations of motion</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/08_generalized-coords/'>Using Generalized
+    coordinates</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/09_damped-pendulum/'>Rigid Body motion with
+    non-conservative forces</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/10_damped-pendulum/'>Solving the damped pendulum equations of motion</a></li>
+    <div class="menu-header">Module_02</div>
+    <li class='menu-item active'><a href='/dynamics/tutorials/11_constraints/'>Creating Kinematic Constraints</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/12_solve-kinematics/'>Solving Kinematic Constraints</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/13_flappy/'>Flappy bird model of path and
+    speed</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/14_piston-crank/'>Kinematic solutions for a piston-crank system</a></li>
+    <div class="menu-header">Module_03</div>
+    <li class='menu-item '><a href='/dynamics/tutorials/15_piston-full/'>Full Kinematic Equations for piston-crank
+</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/16_mbd-lagrange/'>Lagrange equations for reaction forces</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/17_augmented-MBD/'>Augmented Multibody Dynamic (MBD) approach</a></li>
+    <li class='menu-item '><a href='/dynamics/tutorials/18_augment-code/'>Pendulum-augmented MBD code</a></li>
+  </ul>
+</div>
+</div>
+</div>
+<a class="off-canvas-overlay" href="#close"></a>
+
+
+<div class="off-canvas-content">
+<div id="content" class="docs-content">
+<div class="container">
+<!-- Content appended here -->
+<div class="franklin-content">
+<!-- PlutoStaticHTML.Begin -->
+<!--
+    # This information is used for caching.
+    [PlutoStaticHTML.State]
+    input_sha = "ef8b3e4a319e384ca23e48dffb3f9d9dea6e3887cf2f71357af6e44516b664d2"
+    julia_version = "1.12.5"
+-->
+
+<div class="markdown"><h1 id="Creating-Kinematic-Constraints">Creating Kinematic Constraints</h1><p><a href="https://www.youtube.com/watch?v=mZIOv7meGJo &quot;Creating Kinematic Constraints - click to watch&quot;"><img alt="Creating Kinematic Constraints" src="https://img.youtube.com/vi/mZIOv7meGJo/0.jpg"/></a></p></div>
+
+
+<div class="markdown"><h2 id="1.-Introduction">1. Introduction</h2><p>This module transitions from analytical dynamics to computational dynamics. Previously, we derived equations of motion using variational calculus and solved initial value problems numerically. Now we examine how computers represent rigid-body systems through coordinates, constraints, and kinematics.</p><h2 id="2.-Multi‑Body-Kinematics-Overview">2. Multi‑Body Kinematics Overview</h2><p>Computational dynamics focuses on rigid-body motion described through generalized coordinates. For a body:</p><ul><li><p>Position: <span class="tex">\(R_1 = [x_1, y_1]^T\)</span></p></li><li><p>Orientation: <span class="tex">\(\theta_1\)</span></p></li><li><p>Body-fixed axes: <span class="tex">\(\mathbf{i}_1, \mathbf{j}_1\)</span></p></li></ul></div>
+
+
+<div class="markdown"><p>Any point on the body can be written: <span class="tex">\(R = R_1 + x\,\mathbf{i}_1 + y\,\mathbf{j}_1\)</span></p><h2 id="3.-Door-Example-Setup">3. Door Example Setup</h2><p>A door is modeled as a rigid body with center of mass at <span class="tex">\(R_1\)</span> and rotation <span class="tex">\(\theta_1\)</span>. A point such as the handle is located using offsets <span class="tex">\((x_H, y_H)\)</span>: <span class="tex">\(R_H = R_1 + x_H\,\mathbf{i}_1 + y_H\,\mathbf{j}_1\)</span></p><p>The hinge point, offset by door width <span class="tex">\(W\)</span> and thickness <span class="tex">\(T\)</span>: <span class="tex">\(R_{hinge}^{(1)} = R_1 - \frac{W}{2}\mathbf{i}_1 + \frac{T}{2}\mathbf{j}_1\)</span></p><p>The same hinge point expressed in ground coordinates: <span class="tex">\(R_{hinge}^{(0)} = R_0 + M_x\mathbf{i}_0 + M_y\mathbf{j}_0\)</span></p><p>Setting these equal produces constraint equations.</p></div>
+
+
+<div class="markdown"><h2 id="4.-Rotation-Matrix">4. Rotation Matrix</h2><p>To relate body-fixed and ground-fixed frames: <span class="tex">\(A(\theta_1) = \begin{bmatrix} \cos\theta_1 &amp; -\sin\theta_1 \\ \sin\theta_1 &amp; \cos\theta_1 \end{bmatrix}\)</span></p><p>Thus: <span class="tex">\(\mathbf{i}_1 = A(\theta_1)\mathbf{i}_0, \qquad \mathbf{j}_1 = A(\theta_1)\mathbf{j}_0\)</span></p><p>The transpose equals the inverse: <span class="tex">\(A^{-1}(\theta_1) = A^T(\theta_1)\)</span></p><h2 id="5.-Constraint-Equations">5. Constraint Equations</h2><p>The hinge must satisfy: <span class="tex">\(C(q) = R_1 + A(\theta_1) r_{hinge}^{(1)} - R_{hinge}^{(0)} = 0\)</span> This expands into two scalar equations (x and y constraints).</p><h2 id="6.-Velocity-Constraints">6. Velocity Constraints</h2><p>Taking the time derivative: <span class="tex">\(\frac{d}{dt}C(q,t) = 0\)</span> Applying the chain rule: <span class="tex">\(C_q \, \dot{q} = -C_t\)</span> where <span class="tex">\(q = [x_1, y_1,\theta_1]^T\)</span>.</p><p>Differentiating the rotation matrix term yields: <span class="tex">\(\frac{d}{dt}A(\theta_1) = A(\theta_1)\begin{bmatrix}0 &amp; -\dot{\theta}_1 \ \dot{\theta}_1 &amp; 0\end{bmatrix}\)</span></p></div>
+
+
+<div class="markdown"><h2 id="7.-Adding-a-Time‑Varying-Constraint">7. Adding a Time‑Varying Constraint</h2><p>If the door is pushed upward at constant speed: <span class="tex">\(R_{1y} = 2t \quad \Rightarrow \quad \dot{R}_{1y} = 2\)</span> This creates a third constraint to be incorporated into the system.</p><h2 id="8.-Solving-the-System">8. Solving the System</h2><p>At each timestep:</p><ol><li><p><strong>Position solve:</strong> find <span class="tex">\(q\)</span> such that <span class="tex">\(C(q,t)=0\)</span></p></li><li><p><strong>Velocity solve:</strong> solve linear system <span class="tex">\(C_q \dot{q} = -C_t\)</span></p></li></ol><p>These yield consistent positions and velocities that satisfy all kinematic constraints.</p><h2 id="Wrapping-Up">Wrapping Up</h2><p>This framework provides:</p><ul><li><p>Rigorous description of rigid‑body motion</p></li><li><p>Consistent enforcement of physical constraints</p></li><li><p>Linear velocity equations even for nonlinear positions</p></li><li><p>A foundation for forming differential‑algebraic equations used in multi‑body simulation</p></li></ul><p>Computational dynamics transforms geometry, motion, and constraint information into forms solvable by numerical tools such as Julia, MATLAB, or Python.</p></div>
+<div class='manifest-versions'>
+<p>Built with Julia 1.12.5 and</p>
+
+</div>
+
+<!-- PlutoStaticHTML.End -->
+
+<p><em>To run this tutorial locally, download <a href="/dynamics/tutorials/11&#95;constraints.jl">this file</a> and open it with <a href="https://plutojl.org">Pluto.jl</a>.</em></p>
+<script type="text/javascript" src="/dynamics/libs/ansi_up.js" defer></script>
+
+<div id="copyright" class="docs-footer container grid-lg">
+<a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> Ryan C. Cooper
+</div>
+</div><!-- CONTENT ENDS HERE -->
+    </div>
+    </div>
+    </div>
+    </div>
+  </body>
+</html>
